@@ -2,6 +2,7 @@
 
 This project collects, organizes, and provides Catholic commentary (encyclicals, homilies, saints' reflections, Church Fathers, etc.) mapped to scripture references for use in a web application.
 
+
 ## Features
 - Data model for scripture references and commentary
 - List of authoritative Catholic sources
@@ -9,6 +10,11 @@ This project collects, organizes, and provides Catholic commentary (encyclicals,
 - Automated data collection and ingestion
 - SQLite database schema
 - FastAPI-based API for querying commentaries
+- **Robust logging and error handling**: All ingestion steps are logged, including errors and skipped files. A summary line is always written at the end of each run.
+- **Filename sanitization**: All downloaded files are sanitized for cross-platform compatibility.
+- **Deduplication**: Duplicate works are detected and skipped.
+- **PDF extraction**: Uses `pypdf` for extracting text from PDF sources.
+- **Validation test suite**: 50+ tests ensure ingestion, scripture mapping, and logging are robust.
 
 ## Getting Started
 1. Clone the repository
@@ -17,7 +23,7 @@ This project collects, organizes, and provides Catholic commentary (encyclicals,
    ```
    pip install -r requirements.txt
    ```
-4. Run the ingestion and extraction scripts to populate the database
+4. Run the ingestion and extraction scripts to populate the database. After each run, check `downloaded_sources/ccel/ccel_ingest.log` for a summary at the end of the file.
 5. Start the API server:
    ```
    uvicorn data_pipeline.api:app --reload
