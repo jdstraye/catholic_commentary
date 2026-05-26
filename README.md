@@ -5,16 +5,28 @@ This project collects, organizes, and provides Catholic commentary (encyclicals,
 ## Features
 - Data model for scripture references and commentary
 - List of authoritative Catholic sources
-- Scripture reference parser
-- Demo ingestion script
+- Scripture reference parser and mapping
+- Automated data collection and ingestion
+- SQLite database schema
+- FastAPI-based API for querying commentaries
 
 ## Getting Started
 1. Clone the repository
-2. Set up a Python 3.13+ environment
-3. Run the demo:
+2. Create and activate a Python 3.13+ virtual environment
+3. Install dependencies:
    ```
-   python -m data_pipeline.ingest_demo
+   pip install -r requirements.txt
    ```
+4. Run the ingestion and extraction scripts to populate the database
+5. Start the API server:
+   ```
+   uvicorn data_pipeline.api:app --reload
+   ```
+6. Query the API:
+   - Example: `http://127.0.0.1:8000/commentary/?book=Leviticus&chapter=6`
+
+## Contributing
+- See CONTRIBUTING.md for guidelines on adding new sources, improving parsing, or extending the API.
 
 ## License
 See individual source licenses for commentary content. Project code is MIT licensed.
